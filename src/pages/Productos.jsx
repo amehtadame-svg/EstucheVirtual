@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useCart } from '../CartContext';
 
 function Productos() {
+
+  const { agregarProducto } = useCart();
+  const [agregado, setAgregado] = useState('');
 
   const productos = [
     { nombre: 'Cuaderno universitario', precio: 8500, categoria: 'Cuadernos', icono: '📓' },
@@ -27,6 +31,12 @@ function Productos() {
     const coincideBusqueda = prod.nombre.toLowerCase().includes(busqueda.toLowerCase());
     return coincideCategoria && coincideBusqueda;
   });
+
+  const handleAgregar = (prod) => {
+    agregarProducto(prod);
+    setAgregado(prod.nombre);
+    setTimeout(() => setAgregado(''), 1500);
+  };
 
   return (
     <div style={{ padding: '40px', backgroundColor: '#fff', minHeight: '100vh' }}>
@@ -100,17 +110,21 @@ function Productos() {
             <p style={{ fontSize: '18px', color: '#9b59b6', fontWeight: '600', margin: '0 0 16px' }}>
               ${prod.precio.toLocaleString()}
             </p>
-            <button style={{
-              backgroundColor: '#9b59b6',
-              color: '#fff',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              width: '100%'
-            }}>
-              Agregar al carrito
+            <button
+              onClick={() => handleAgregar(prod)}
+              style={{
+                backgroundColor: agregado === prod.nombre ? '#27ae60' : '#9b59b6',
+                color: '#fff',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                width: '100%',
+                transition: 'background-color 0.3s'
+              }}
+            >
+              {agregado === prod.nombre ? 'Agregado!' : 'Agregar al carrito'}
             </button>
           </div>
         ))}

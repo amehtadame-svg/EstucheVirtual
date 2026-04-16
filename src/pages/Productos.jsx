@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useCart } from '../CarpTemp';
+import { useCart } from '../CartContext';
 
 function Productos() {
 

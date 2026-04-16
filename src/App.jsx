@@ -4,7 +4,7 @@ import Productos from './pages/Productos';
 import Nosotros from './pages/Nosotros';
 import Contacto from './pages/Contacto';
 import Carrito from './pages/Carrito';
-import { useCart } from './CarpTemp';
+import { useCart } from './CartContext';
 
 function NavBar() {
   const { totalProductos } = useCart();

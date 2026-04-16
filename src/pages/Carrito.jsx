@@ -1,4 +1,4 @@
-import { useCart } from '../CarpTemp';
+import { useCart } from '../CartContext';
 import { Link } from 'react-router-dom';
 
 function Carrito() {
